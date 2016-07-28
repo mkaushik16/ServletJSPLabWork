@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jul 26, 2016 1:21:18 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="User" table="user">
+    <class name="com.visa.User" table="user">
         <id name="id" type="int">
             <column name="ID" />
             <generator class="identity" />
@@ -11,11 +11,21 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
+        <component name="ProteinData">
         <property name="total" type="int">
             <column name="TOTAL" />
         </property>
         <property name="goal" type="int">
             <column name="GOAL" />
         </property>
+        </component>
+        <set name="history" table="USER_HISTORY">
+        <key column="ID"/>
+        <composite-element class="com.visa.UserHistory">
+        <property name="entryTime" type="date" column="ENTRY_TIME"/>
+        <property name="entry" type="java.lang.String" column="ENTRY"/>
+        </composite-element>
+        
+        </set>
     </class>
 </hibernate-mapping>
